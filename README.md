@@ -1,6 +1,20 @@
 # miniature-vessels-of-war
 
-A remake of the classic flash game tiny tanks
+A remake of the classic flash game tiny tanks in the form of a .io game.
 
-Following the [guide](https://victorzhou.com/blog/build-an-io-game-part-1/) on
-how to make a .io game. Found it at [lobste.rs](lobste.rs).
+## TODO for MVP LTA
+
+- [ ] Implement core backend logic to get a game rendering
+- [ ] Movement logic
+    - [ ] Tank Controls
+    - [ ] acceleration / deceleration
+- [ ] Make assets
+    - [ ] Tank
+    - [ ] Bullet
+    - [ ] death
+
+## Stretch goals
+
+- [ ] Custom Maps
+- [ ] Powerups
+- [ ] Capture the flag

@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint --cache --ext .js,.jsx src/"
+    "lint": "eslint --cache --ext .js,.jsx src/",
+    "develop": "cross-env NODE_ENV=development node src/server/server.js",
+    "start": "cross-env NODE_ENV=production node src/server/server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -14,9 +17,10 @@
   "keywords": [
     "games",
     "HTML5",
-    "sockets"
+    "sockets",
+    "canvas"
   ],
-  "author": "Vineeth Voruganti",
+  "author": "Vineeth Voruganti and Maia Ohlinger",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VVoruganti/miniature-vessels-of-war/issues"
