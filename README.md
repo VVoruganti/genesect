@@ -2,17 +2,7 @@
 
 A remake of the classic flash game tiny tanks in the form of a .io game.
 
-## TODO for MVP LTA
-
-- [x] Core Logic
-- [ ] Fix/remove the leaderboard functionality
-- [ ] Movement logic
-    - [ ] Tank Controls
-    - [ ] acceleration / deceleration
-- [ ] Make assets
-    - [ ] Tank
-    - [ ] Bullet
-    - [ ] death
+A lot of the credit for making the game logic can go to [Victor Zhou](https://victorzhou.com/blog/build-an-io-game-part-1/)
 
 ## Stretch goals
 
@@ -26,3 +16,10 @@ A remake of the classic flash game tiny tanks in the form of a .io game.
     - [ ] Dependabot
 - [ ] Check if you need all of the different dependencies
     - [ ] lodash?
+
+
+## DevOps stuff
+
+- [ ] Add unit tests
+- [ ] Add proper linting rules
+- [ ] Add CI/CD
