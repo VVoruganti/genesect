@@ -1,6 +1,7 @@
-const ASSET_NAMES = [];
+const ASSET_NAMES = ['tank.svg', 'bullet.svg'];
 
 const assets = {};
+// TODO test using forEach instead of map function
 const downloadPromise = Promise.all(ASSET_NAMES.map(downloadAsset));
 
 function downloadAsset(assetName) {
@@ -11,7 +12,7 @@ function downloadAsset(assetName) {
             assets[assetName] = asset;
             resolve();
         };
-        asset.src = `/asset/${assetName}`;
+        asset.src = `/assets/${assetName}`;
     });
 }
 

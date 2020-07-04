@@ -4,7 +4,8 @@ A remake of the classic flash game tiny tanks in the form of a .io game.
 
 ## TODO for MVP LTA
 
-- [ ] Implement core backend logic to get a game rendering
+- [x] Core Logic
+- [ ] Fix/remove the leaderboard functionality
 - [ ] Movement logic
     - [ ] Tank Controls
     - [ ] acceleration / deceleration
@@ -18,3 +19,10 @@ A remake of the classic flash game tiny tanks in the form of a .io game.
 - [ ] Custom Maps
 - [ ] Powerups
 - [ ] Capture the flag
+- [ ] Different Control Scheme
+- [ ] Campaign mode
+- [ ] LAN mode opposed to client-server model
+- [ ] CI/CD
+    - [ ] Dependabot
+- [ ] Check if you need all of the different dependencies
+    - [ ] lodash?
