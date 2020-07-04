@@ -7,9 +7,9 @@ class Object {
         this.speed = speed;
     }
 
-    update(dt) {
-        this.x += dt * this.speed * Math.sin(this.direction);
-        this.y -= dt * this.speed * Math.cos(this.direction);
+    update(dt, dir) {
+        this.x += dt * dir * this.speed * Math.sin(this.direction);
+        this.y -= dt * dir * this.speed * Math.cos(this.direction);
     }
 
     distanceTo(object) {
@@ -18,7 +18,7 @@ class Object {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    setDirection(dir) {
+    updateMove(dir) {
         this.direction = dir;
     }
 

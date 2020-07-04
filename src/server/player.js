@@ -9,11 +9,16 @@ class Player extends ObjectClass {
         this.hp = Constants.PLAYER_MAX_HP;
         this.fireCooldown = 0;
         this.score = 0;
+        this.moving = false;
+        this.moveDir = 1;
+        this.shooting = false;
     }
 
     // Returns a newly created bullet, or null.
     update(dt) {
-        super.update(dt);
+        if(this.moving) {
+            super.update(dt, this.moveDir);
+        }
         
         // Update score
         this.score += dt * Constants.SCORE_PER_SECOND;
@@ -23,12 +28,19 @@ class Player extends ObjectClass {
         this.y = Math.max(0, Math.min(Constants.MAP_SIZE, this.y));
 
         // Fire a bullet, if needed
-        this.fireCooldown -= dt;
-        if (this.fireCooldown <= 0) {
+        this.fireCooldown = Math.max(this.fireCooldown - dt, 0);
+        if (this.shooting && this.fireCooldown <= 0) {
             this.fireCooldown += Constants.PLAYER_FIRE_COOLDOWN;
             return new Bullet(this.id, this.x, this.y, this.direction);
         }
         return null;
+    }
+
+    updateMove(move) {
+        super.updateMove(move.dir);
+        this.moving = move.isMoving;
+        this.moveDir = move.movedir;
+        this.shooting = move.shooting;
     }
 
     takeBulletDamage() {

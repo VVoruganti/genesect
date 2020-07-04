@@ -49,7 +49,7 @@ function joinGame(username) {
 }
 
 function handleInput(dir) {
-    game.handleInput(this, dir);
+    game.handleInput(this, move);
 }
 
 function onDisconnect() {
