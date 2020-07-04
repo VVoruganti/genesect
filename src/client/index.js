@@ -26,7 +26,6 @@ Promise.all([
         initState();
         startCapturingInput();
         startRendering();
-        setLeaderboardHidden(false);
-        console.log("register the click");
+        setLeaderboardHidden(true);
     };
 }).catch(console.error);

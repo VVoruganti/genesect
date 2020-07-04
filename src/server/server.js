@@ -48,7 +48,7 @@ function joinGame(username) {
     game.addPlayer(this, username)
 }
 
-function handleInput(dir) {
+function handleInput(move) {
     game.handleInput(this, move);
 }
 

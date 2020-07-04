@@ -12,6 +12,7 @@ class Player extends ObjectClass {
         this.moving = false;
         this.moveDir = 1;
         this.shooting = false;
+        this.moveDirDx = 0
     }
 
     // Returns a newly created bullet, or null.
@@ -19,6 +20,8 @@ class Player extends ObjectClass {
         if(this.moving) {
             super.update(dt, this.moveDir);
         }
+
+        this.direction += dt * this.moveDirDx;
         
         // Update score
         this.score += dt * Constants.SCORE_PER_SECOND;
@@ -37,9 +40,9 @@ class Player extends ObjectClass {
     }
 
     updateMove(move) {
-        super.updateMove(move.dir);
-        this.moving = move.isMoving;
-        this.moveDir = move.movedir;
+        this.moveDirDx = move.dirDx;
+        this.moving = move.moving;
+        this.moveDir = move.dir;
         this.shooting = move.shooting;
     }
 
