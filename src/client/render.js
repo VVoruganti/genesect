@@ -35,8 +35,8 @@ function render() {
   bullets.forEach(renderBullet.bind(null, me));
 
   // Draw all players
-  renderPlayer(me, me, true); //added true because this is rendering the player
-  others.forEach(renderPlayer.bind(null, me, false)); //added false because this is rendering all of enemies
+  renderPlayer(me, me); 
+  others.forEach(renderEnemy.bind(null, me));
 }
 
 function renderBackground(x, y) {
@@ -58,10 +58,9 @@ function renderBackground(x, y) {
 
 
 
-function renderPlayer(me, player, isPlayer) {
+function renderPlayer(me, player) {
   const { x, y, direction } = player;
   //should check whether rendered tank is the player or not
-  const playerBool = isPlayer;
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
@@ -69,21 +68,15 @@ function renderPlayer(me, player, isPlayer) {
   context.save();
   context.translate(canvasX, canvasY);
   context.rotate(direction);
-  // context.drawImage(
-  //   getAsset('tank.svg'),
-  //   -PLAYER_RADIUS,
-  //   -PLAYER_RADIUS,
-  //   PLAYER_RADIUS * 2,
-  //   PLAYER_RADIUS * 2,
-  // );
-  if (playerBool === true) {
-    drawPlayerAsset();
-  } else {
-    drawEnemyAsset();
-  }
+  context.drawImage(
+    getAsset('tank.svg'),
+    -PLAYER_RADIUS,
+    -PLAYER_RADIUS,
+    PLAYER_RADIUS * 2,
+    PLAYER_RADIUS * 2,
+  );
   context.restore();
 
-  // Draw health bar
   context.fillStyle = 'white';
   context.fillRect(
     canvasX - PLAYER_RADIUS,
@@ -100,24 +93,38 @@ function renderPlayer(me, player, isPlayer) {
   );
 }
 
-//same as drawEnemyAsset just with di
-function drawPlayerAsset() {
-  context.drawImage(
-    getAsset('tank.svg'),
-    -PLAYER_RADIUS,
-    -PLAYER_RADIUS,
-    PLAYER_RADIUS * 2,
-    PLAYER_RADIUS * 2,
-  );
-}
+function renderEnemy (me, player) {
+  const { x, y, direction } = player;
+  //should check whether rendered tank is the player or not
+  const canvasX = canvas.width / 2 + x - me.x;
+  const canvasY = canvas.height / 2 + y - me.y;
 
-function drawEnemyAsset() {
+  // Draw tank
+  context.save();
+  context.translate(canvasX, canvasY);
+  context.rotate(direction);
   context.drawImage(
     getAsset('tank2.svg'),
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
     PLAYER_RADIUS * 2,
     PLAYER_RADIUS * 2,
+  );
+  context.restore();
+
+  context.fillStyle = 'white';
+  context.fillRect(
+    canvasX - PLAYER_RADIUS,
+    canvasY + PLAYER_RADIUS + 8,
+    PLAYER_RADIUS * 2,
+    2,
+  );
+  context.fillStyle = 'red';
+  context.fillRect(
+    canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp / PLAYER_MAX_HP,
+    canvasY + PLAYER_RADIUS + 8,
+    PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
+    2,
   );
 }
 
