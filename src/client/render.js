@@ -35,8 +35,8 @@ function render() {
   bullets.forEach(renderBullet.bind(null, me));
 
   // Draw all players
-  renderPlayer(me, me);
-  others.forEach(renderPlayer.bind(null, me));
+  renderPlayer(me, me, true); //added true because this is rendering the player
+  others.forEach(renderPlayer.bind(null, me, false)); //added false because this is rendering all of enemies
 }
 
 function renderBackground(x, y) {
@@ -58,8 +58,10 @@ function renderBackground(x, y) {
 
 
 
-function renderPlayer(me, player) {
+function renderPlayer(me, player, isPlayer) {
   const { x, y, direction } = player;
+  //should check whether rendered tank is the player or not
+  const playerBool = isPlayer;
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
@@ -67,13 +69,18 @@ function renderPlayer(me, player) {
   context.save();
   context.translate(canvasX, canvasY);
   context.rotate(direction);
-  context.drawImage(
-    getAsset('tank.svg'),
-    -PLAYER_RADIUS,
-    -PLAYER_RADIUS,
-    PLAYER_RADIUS * 2,
-    PLAYER_RADIUS * 2,
-  );
+  // context.drawImage(
+  //   getAsset('tank.svg'),
+  //   -PLAYER_RADIUS,
+  //   -PLAYER_RADIUS,
+  //   PLAYER_RADIUS * 2,
+  //   PLAYER_RADIUS * 2,
+  // );
+  if (playerBool === true) {
+    drawPlayerAsset();
+  } else {
+    drawEnemyAsset();
+  }
   context.restore();
 
   // Draw health bar
@@ -90,6 +97,27 @@ function renderPlayer(me, player) {
     canvasY + PLAYER_RADIUS + 8,
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
+  );
+}
+
+//same as drawEnemyAsset just with di
+function drawPlayerAsset() {
+  context.drawImage(
+    getAsset('tank.svg'),
+    -PLAYER_RADIUS,
+    -PLAYER_RADIUS,
+    PLAYER_RADIUS * 2,
+    PLAYER_RADIUS * 2,
+  );
+}
+
+function drawEnemyAsset() {
+  context.drawImage(
+    getAsset('tank2.svg'),
+    -PLAYER_RADIUS,
+    -PLAYER_RADIUS,
+    PLAYER_RADIUS * 2,
+    PLAYER_RADIUS * 2,
   );
 }
 

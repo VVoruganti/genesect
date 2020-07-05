@@ -1,4 +1,4 @@
-const ASSET_NAMES = ['tank.svg', 'bullet.svg'];
+const ASSET_NAMES = ['tank.svg', 'bullet.svg', 'tank2.svg'];
 
 const assets = {};
 // TODO test using forEach instead of map function
