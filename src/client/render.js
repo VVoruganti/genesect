@@ -1,10 +1,12 @@
+import { debounce } from 'throttle-debounce';
 import { getAsset } from './assets';
 import { getCurrentState } from './state';
-import { debounce } from 'throttle-debounce';
 
 const Constants = require('../shared/constants');
 
-const { PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, MAP_SIZE } = Constants;
+const {
+  PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, MAP_SIZE,
+} = Constants;
 
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
@@ -35,7 +37,7 @@ function render() {
   bullets.forEach(renderBullet.bind(null, me));
 
   // Draw all players
-  renderPlayer(me, me); 
+  renderPlayer(me, me);
   others.forEach(renderEnemy.bind(null, me));
 }
 
@@ -56,11 +58,9 @@ function renderBackground(x, y) {
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-
-
 function renderPlayer(me, player) {
   const { x, y, direction } = player;
-  //should check whether rendered tank is the player or not
+  // should check whether rendered tank is the player or not
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
@@ -86,16 +86,16 @@ function renderPlayer(me, player) {
   );
   context.fillStyle = 'red';
   context.fillRect(
-    canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp / PLAYER_MAX_HP,
+    canvasX - PLAYER_RADIUS + (PLAYER_RADIUS * 2 * player.hp) / PLAYER_MAX_HP,
     canvasY + PLAYER_RADIUS + 8,
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
 }
 
-function renderEnemy (me, player) {
+function renderEnemy(me, player) {
   const { x, y, direction } = player;
-  //should check whether rendered tank is the player or not
+  // should check whether rendered tank is the player or not
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
@@ -121,7 +121,7 @@ function renderEnemy (me, player) {
   );
   context.fillStyle = 'red';
   context.fillRect(
-    canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp / PLAYER_MAX_HP,
+    canvasX - PLAYER_RADIUS + (PLAYER_RADIUS * 2 * player.hp) / PLAYER_MAX_HP,
     canvasY + PLAYER_RADIUS + 8,
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
