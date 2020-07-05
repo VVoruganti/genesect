@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "gcp-build": "webpack --config webpack.prod.js",
+    "start": "node src/server/server.js",
     "lint": "eslint --cache --ext .js,.jsx src/",
     "develop": "cross-env NODE_ENV=development node src/server/server.js",
-    "start": "cross-env NODE_ENV=production node src/server/server.js",
+    "local-start": "cross-env NODE_ENV=production node src/server/server.js",
     "test": "jest"
   },
   "repository": {
