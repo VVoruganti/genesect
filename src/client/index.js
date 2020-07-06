@@ -12,20 +12,20 @@ const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
 const usernameInput = document.getElementById('username-input');
 
-console.log("Client Page Loaded");
-
 Promise.all([
-    connect(), // connect web socket to the server
-    downloadAssets() // download all necessary assets from server
-]).then(() => {
+  connect(), // connect web socket to the server
+  downloadAssets(), // download all necessary assets from server
+])
+  .then(() => {
     playMenu.classList.remove('hidden');
     usernameInput.focus();
     playButton.onclick = () => {
-        play(usernameInput.value);
-        playMenu.classList.add('hidden');
-        initState();
-        startCapturingInput();
-        startRendering();
-        setLeaderboardHidden(true);
+      play(usernameInput.value);
+      playMenu.classList.add('hidden');
+      initState();
+      startCapturingInput();
+      startRendering();
+      setLeaderboardHidden(true);
     };
-}).catch(console.error);
+  })
+  .catch(console.error);
