@@ -4,6 +4,12 @@ import { getCurrentState } from './state';
 
 const Constants = require('../shared/constants');
 
+function setCanvasDimensions() {
+  const scaleRatio = Math.max(1, 800 / window.innerWidth);
+  canvas.width = scaleRatio * window.innerWidth;
+  canvas.height = scaleRatio * window.innerHeight;
+}
+
 const {
   PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, MAP_SIZE,
 } = Constants;
@@ -11,12 +17,6 @@ const {
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
 setCanvasDimensions();
-
-function setCanvasDimensions() {
-  const scaleRatio = Math.max(1, 800 / window.innerWidth);
-  canvas.width = scaleRatio * window.innerWidth;
-  canvas.height = scaleRatio * window.innerHeight;
-}
 
 window.addEventListener('resize', debounce(40, setCanvasDimensions));
 
@@ -37,8 +37,8 @@ function render() {
   bullets.forEach(renderBullet.bind(null, me));
 
   // Draw all players
-  renderPlayer(me, me);
-  others.forEach(renderEnemy.bind(null, me));
+  renderTank(me, me);
+  others.forEach(renderTank.bind(null, me));
 }
 
 function renderBackground(x, y) {
@@ -58,6 +58,7 @@ function renderBackground(x, y) {
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+/*
 function renderPlayer(me, player) {
   const { x, y, direction } = player;
   // should check whether rendered tank is the player or not
@@ -91,9 +92,9 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-}
+} */
 
-function renderEnemy(me, player) {
+function renderTank(me, player) {
   const { x, y, direction } = player;
   // should check whether rendered tank is the player or not
   const canvasX = canvas.width / 2 + x - me.x;
@@ -103,8 +104,9 @@ function renderEnemy(me, player) {
   context.save();
   context.translate(canvasX, canvasY);
   context.rotate(direction);
+  const tankAsset = me === player ? getAsset('tank.svg') : getAsset('tank2.svg');
   context.drawImage(
-    getAsset('tank2.svg'),
+    tankAsset,
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
     PLAYER_RADIUS * 2,
