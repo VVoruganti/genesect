@@ -46,4 +46,9 @@ npm install
 npm run build
 npm run start
 ```
+Or you an run it with docker
 
+```
+docker build -t miniature-vessels-of-war .
+docker run -dp 8080:8080 miniature-vessels-of-war:latest
+```

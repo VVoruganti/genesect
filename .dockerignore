@@ -1,0 +1,6 @@
+node_modules/
+app.yaml
+.git
+.gitignore
+.glcoudignore
+README.md
