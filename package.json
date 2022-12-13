@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/VVoruganti/miniature-vessels-of-war#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "html-webpack-plugin": "^4.3.0",
     "lodash": "^4.17.19",
     "shortid": "^2.2.15",
